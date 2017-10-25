@@ -1,0 +1,41 @@
+.jumbotron {
+    background-color: lightskyblue !important;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: lightgray; // Choose your own color here
+ }
+
+
+td {border: 1px #DDD solid; padding: 5px; cursor: pointer;}
+
+.selected {
+    border-width: thick;
+    border-style: double;
+    border-color: gray;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+    margin: 1px;
+}
+
+input[type="color"] {
+	/*opacity: 0;*/
+	display: block;
+	width: 60px;
+	height: 35px;
+	border: none;
+}
+/*!*#color-picker-wrapper {*!*/
+	/*!*float: left;*!*/
+/*}*/

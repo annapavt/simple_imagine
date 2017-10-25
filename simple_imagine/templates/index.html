@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+
+    <script src="../static/bower_components/jquery/dist/jquery.js"></script>
+    <script src="../static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../static/bower_components/vue/dist/vue.js"></script>
+
+    {#  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+    {#  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+    {#    <script src="https://unpkg.com/vue"></script>#}
+
+
+</head>
+<body>
+
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="page-header">
+            <h1>Worklist</h1>
+            <p>
+                Select one of the scans
+            </p>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Accession Number</th>
+                <th>Patient Name</th>
+                <th>UID</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% if scans %}
+                {% for scan in scans %}
+                    <tr onclick="document.location='view-scan/{{ scan.uid }}'" style="cursor:pointer">
+                        <td>{{ scan.accessionNumber }}</td>
+                        <td>{{ scan.patientName }}</td>
+                        <td>{{ scan.uid }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+

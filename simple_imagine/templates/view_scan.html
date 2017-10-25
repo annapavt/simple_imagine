@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- support for mobile touch devices -->
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="../static/bower_components/jquery/dist/jquery.js"></script>
+    <script src="../static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../static/bower_components/vue/dist/vue.js"></script>
+    <script src="../static/bower_components/cornerstone/dist/cornerstone.js"></script>
+    <script src="../static/bower_components/cornerstoneTools/dist/cornerstoneTools.js"></script>
+
+
+
+    <link href="../static/css/dialogPolyfill.css" rel="stylesheet">
+    <link href="../static/css/cornerstone.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <a href="/">Go back to the Worklist page</a>
+
+        <div class="page-header">
+            <h1>Scan Viewer</h1>
+            <h3 id="scan_id">{{ scan.uid }}</h3>
+            <p>
+                Select the suspicious area
+            </p>
+
+            <ul>
+                <li><input type="color" id="drawColor" value="#00ffff"/></li>
+
+                <li>
+                    <button type="button" class="btn btn-danger" id="erase">
+                        <span class="glyphicon glyphicon-erase"></span> Erase
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-primary" id="save">
+                        <span class="glyphicon glyphicon-save"></span> Save
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="col-xs-9">
+                <div style="width:512px;height:512px;position:relative;display:inline-block;"
+                     oncontextmenu="return false"
+                     class='cornerstone-enabled-image'
+                     unselectable='on'
+                     onselectstart='return false;'
+                     onmousedown='return false;'>
+                    <div id="dicomImage" style="width:512px;height:512px;top:0px;left:0px; position:absolute;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+
+                <table class="table table-bordered" id="roiTable">
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- jquery - included to make things easier to demo, not needed or used by the cornerstone library but
+is used by our example image loader-->
+<script src="../static/js/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- include the cornerstone library -->
+<script src="../static/js/cornerstone.min.js"></script>
+
+<script src="../static/js/cornerstoneMath.min.js"></script>
+
+<!-- include the cornerstone tools library -->
+<script src="../static/js/cornerstoneTools.js"></script>
+
+<script>
+    var element = $('#dicomImage').get(0);
+
+    var stack = {
+        currentImageIdIndex: 0,
+        imageIds: imageIds
+    };
+    var scan_md = {};
+    scan_md.uid = "{{ scan.uid }}";
+    scan_md.slices = {{  scan.size[0] }};
+    scan_md.height = {{ scan.size[1] }};
+    scan_md.width = {{ scan.size[2] }};
+    var imageIds = [];
+    for (var i = 0; i < scan_md.slices; i++) {
+        imageIds[i] = "aidoc://" + scan_md.uid + "/" + i;
+    }
+
+    stack.imageIds = imageIds;
+    scanImages = [];
+    // Handles the mouse wheel scroll event
+    var lastImageIndex = stack.currentImageIdIndex;
+    var selectedROI;
+
+</script>
+<script src="../static/scripts/myImageLoader.js"></script>
+
+<script src="../static/scripts/view_scan.js"></script>
+
+
+</html>

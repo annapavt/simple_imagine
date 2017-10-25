@@ -1,0 +1,21 @@
+{
+  "name": "simple_imagine",
+  "description": "",
+  "main": "templates/index.html",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "cornerstoneTools": "^0.9.1",
+    "cornerstone": "^0.13.0",
+    "vue": "^2.5.2"
+  }
+}
